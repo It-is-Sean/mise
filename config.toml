@@ -42,15 +42,14 @@ rm -f "$HOME/.config/starship.toml"
 ln -s "$HOME/.config/mise/starship.toml" "$HOME/.config/starship.toml"
 '''
 
+[tasks.bootstrap]
+depends = [
+  "bootstrap-zim",
+  "bootstrap-zsh",
+  "bootstrap-starship",
+]
+
 [bootstrap.repos]
 "~/.config/tmux" = { url = "git@github.com:It-is-Sean/Tmux_Setup.git" }
 "~/.config/nvim" = { url = "git@github.com:It-is-Sean/AstroNvim_Setup.git" }
 "~/.config/tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
-
-[bootstrap]
-tasks = [
-  "bootstrap-zim",
-  "bootstrap-zsh",
-  "bootstrap-starship",
-  "bootstrap-starship",
-]
