@@ -1,0 +1,56 @@
+[tools]
+lazygit = "latest"
+neovim = "latest"
+fzf = "latest"
+ripgrep = "latest"
+starship = "latest"
+python = "latest"
+btop = "latest"
+zoxide = "latest"
+lua = "latest"
+luajit = "latest"
+"cargo:tree-sitter-cli" = "latest"
+rust = "latest"
+fastfetch = "latest"
+tmux = "latest"
+
+[tasks.bootstrap-zim]
+run = '''
+if [ ! -f "${ZDOTDIR:-$HOME}/.zim/zimfw.zsh" ]; then
+  curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+fi
+'''
+
+[tasks.bootstrap-zsh]
+run = '''
+for file in .zshrc .zprofile .zsh_profile .zshenv .zimrc; do
+  src="$HOME/.config/mise/zsh_config/$file"
+  dst="$HOME/$file"
+
+  if [ -e "$src" ]; then
+    rm -f "$dst"
+    ln -s "$src" "$dst"
+  fi
+done
+'''
+
+[tasks.bootstrap-starship]
+run = '''
+mkdir -p "$HOME/.config"
+
+rm -f "$HOME/.config/starship.toml"
+ln -s "$HOME/.config/mise/starship.toml" "$HOME/.config/starship.toml"
+'''
+
+[bootstrap.repos]
+"~/.config/tmux" = { url = "git@github.com:It-is-Sean/Tmux_Setup.git" }
+"~/.config/nvim" = { url = "git@github.com:It-is-Sean/AstroNvim_Setup.git" }
+"~/.config/tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+[bootstrap]
+tasks = [
+  "bootstrap-zim",
+  "bootstrap-zsh",
+  "bootstrap-starship",
+  "bootstrap-starship",
+]

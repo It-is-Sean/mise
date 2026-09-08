@@ -1,0 +1,64 @@
+export EDITOR='nvim'
+export TLDR_LANGUAGE='zh'
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+export UV_DEFAULT_INDEX=https://pypi.tuna.tsinghua.edu.cn/simple
+
+# export GOOGLE_CLOUD_PROJECT="120687594608"
+export GEMINI_CLI_DISABLE_UPDATE_CHECK=true
+export HOMEBREW_NO_ENV_HINTS=1
+
+alias cls='clear'
+alias cdp='cd ~1'
+alias cdpp='cd ~2'
+alias nvid='neovide'
+alias ff='fastfetch'
+alias leetvim='nvim leetcode.nvim'
+alias n=nvim
+alias lg=lazygit
+alias N=nvid
+alias y=yazi
+alias :q='exit'
+alias -g python=python3
+
+zshcfg ()
+{
+  $EDITOR ~/.zsh_profile
+  source ~/.zsh_profile
+}
+
+sshcfg ()
+{
+  $EDITOR ~/.ssh/config
+}
+zimcfg ()
+{
+  $EDITOR ~/.zimrc
+  echo ") Installing..."
+  zimfw install
+  echo ") Uninstalling..."
+  zimfw uninstall
+}
+
+gitxcodetagcommmit ()
+{
+  VERSION=$(xcodebuild -showBuildSettings \
+    | awk -F ' = ' '/MARKETING_VERSION/ { print $2; exit }')
+
+  git tag -a "v$VERSION" -m "Release v$VERSION"
+  git push origin "v$VERSION"
+}
+
+export FZF_DEFAULT_OPTS="\
+  --height 40% \
+  --layout=reverse \
+  --border=rounded \
+  --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' \
+  --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+  --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+  --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+  --color=selected-bg:#45475A \
+  --color=border:#6C7086,label:#CDD6F4"
+eval "$(zoxide init zsh)"
