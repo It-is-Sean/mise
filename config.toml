@@ -50,6 +50,6 @@ depends = [
 ]
 
 [bootstrap.repos]
-"~/.config/tmux" = { url = "git@github.com:It-is-Sean/Tmux_Setup.git" }
-"~/.config/nvim" = { url = "git@github.com:It-is-Sean/AstroNvim_Setup.git" }
+"~/.config/tmux" = { url = "https://github.com/It-is-Sean/Tmux_Setup.git" }
+"~/.config/nvim" = { url = "https://github.com/It-is-Sean/AstroNvim_Setup.git" }
 "~/.config/tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
